@@ -89,7 +89,43 @@ function App() {
       preguntaActual > preguntas[preguntas.length - 1].id &&
       preguntas[preguntas.length - 1].estadoPregunta == false
     ) {
-      return <div>gracias por participar</div>;
+      return (
+        <>
+          <div className="alert alert-success shadow-lg mb-2">
+            <div>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="stroke-current flex-shrink-0 h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+              <span>Gracias por responder la encuesta</span>
+            </div>
+          </div>
+
+          <ul className="card w-96 bg-base-100 shadow-xl p-5 ">
+            <p className="text-xl font-semibold">Total</p>
+            <hr />
+
+            <li>1 Bateria</li>
+            <li>1 Panel de alarma </li>
+            <li>13 Sen. Mag.</li>
+            <li>3 Sen. de movimiento</li>
+            <li>1 Sirena ext.</li>
+            <li>1 Sirena int.</li>
+            <li>1 Teclado 8z</li>
+            <hr />
+            <li className="text-xl font-semibold">$ 103.250,00</li>
+          </ul>
+        </>
+      );
     }
   }
 
@@ -288,24 +324,41 @@ function App2() {
           })}
           <div>
             {preguntas.filter((x) => x.estado == true).length == 0 && (
-              <div className="alert alert-success shadow-lg">
-                <div>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="stroke-current flex-shrink-0 h-6 w-6"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                    />
-                  </svg>
-                  <span>Gracias por responder la encuesta</span>
+              <>
+                <div className="alert alert-success shadow-lg mb-2">
+                  <div>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="stroke-current flex-shrink-0 h-6 w-6"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                      />
+                    </svg>
+                    <span>Gracias por responder la encuesta</span>
+                  </div>
                 </div>
-              </div>
+
+                <ul className="card w-96 bg-base-100 shadow-xl p-5 ">
+                  <p className="text-xl font-semibold">Total</p>
+                  <hr />
+
+                  <li>1 Bateria</li>
+                  <li>1 Panel de alarma </li>
+                  <li>13 Sen. Mag.</li>
+                  <li>3 Sen. de movimiento</li>
+                  <li>1 Sirena ext.</li>
+                  <li>1 Sirena int.</li>
+                  <li>1 Teclado 8z</li>
+                  <hr />
+                  <li className="text-xl font-semibold">$ 103.250,00</li>
+                </ul>
+              </>
             )}
           </div>
         </div>

@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { Draggable } from "@shopify/draggable";
+import { useCallback, useRef, useState } from "react";
 
 function App() {
   const [preguntas, setPreguntas] = useState([
@@ -367,4 +368,96 @@ function App2() {
   );
 }
 
-export default App2;
+function App3() {
+  const [preguntasSinOrdenar, setpreguntasSinOrdenar] = useState([
+    {
+      id: 1,
+      titulo: "Primera pregunta",
+      estado: true,
+      estadoPregunta: true,
+    },
+    {
+      id: 2,
+      titulo: "Segunda pregunta",
+
+      estado: false,
+      estadoPregunta: false,
+    },
+    {
+      id: 3,
+      titulo: "Tercera pregunta",
+      estado: false,
+      estadoPregunta: false,
+    },
+    {
+      id: 4,
+      titulo: "Cuarta pregunta",
+      estado: false,
+      estadoPregunta: false,
+    },
+  ]);
+
+  const [preguntasOrdenadas, setpreguntasOrdenadas] = useState([]);
+
+  const agregar = (id) => {
+    let dataNew = preguntasSinOrdenar.find((x) => x.id == id);
+    let data = [...preguntasOrdenadas, dataNew];
+
+    let dataEliminar = preguntasSinOrdenar.filter((x) => x.id != id);
+    setpreguntasSinOrdenar(dataEliminar);
+    setpreguntasOrdenadas(data);
+  };
+
+  const eliminar = (id) => {
+    let dataAgregar = preguntasOrdenadas.find((x) => x.id == id);
+    let data = [...preguntasSinOrdenar, dataAgregar];
+    setpreguntasSinOrdenar(data);
+
+    let dataElminar = preguntasOrdenadas.filter((x) => x.id != id);
+    setpreguntasOrdenadas(dataElminar);
+  };
+  return (
+    <>
+      <div className="border border-green-600 flex flex-wrap w-6/12 h-20">
+        {preguntasSinOrdenar.map((x) => {
+          return (
+            <div
+              className="border border-yellow-600 m-2"
+              key={x.id}
+              onClick={() => agregar(x.id)}
+            >
+              {x.titulo}
+            </div>
+          );
+        })}
+      </div>
+
+      <div className="w-60">
+        <ul>
+          {preguntasOrdenadas.map((x, index) => {
+            return (
+              <li className="border border-red-600 my-2" key={index}>
+                <div className="flex flex-row items-center gap-5">
+                  <p>{x.titulo}</p>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="12"
+                    height="12"
+                    fill="currentColor"
+                    viewBox="0 0 1792 1792"
+                    className="cursor-pointer"
+                    onClick={() => eliminar(x.id)}
+                  >
+                    <path d="M1490 1322q0 40-28 68l-136 136q-28 28-68 28t-68-28l-294-294-294 294q-28 28-68 28t-68-28l-136-136q-28-28-28-68t28-68l294-294-294-294q-28-28-28-68t28-68l136-136q28-28 68-28t68 28l294 294 294-294q28-28 68-28t68 28l136 136q28 28 28 68t-28 68l-294 294 294 294q28 28 28 68z"></path>
+                  </svg>
+                </div>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    </>
+  );
+}
+
+export default App3;
